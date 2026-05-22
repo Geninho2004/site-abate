@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  background: #020617;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.site {
+  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: #0f172a;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  color: #94a3b8;
+  margin-bottom: 30px;
+}
+
+.telefone {
+  display: inline-block;
+  background: #22c55e;
+  color: black;
+  padding: 20px 40px;
+  border-radius: 12px;
+  font-size: 36px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.formulario,
+.admin {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.formulario input,
+.formulario textarea,
+.login-box input,
+select {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: none;
+  background: #1e293b;
+  color: white;
+}
+
+button {
+  background: #22c55e;
+  color: black;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.preview-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.preview {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #334155;
+}
+
+.login-box {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid #334155;
+}
+
+.pedido {
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.pedido-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.estado-box {
+  min-width: 200px;
+}
