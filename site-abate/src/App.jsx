@@ -154,18 +154,20 @@ export default function App() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-transparent" />
 
-        <div className="relative max-w-7xl mx-auto px-6 py-24 lg:py-32 grid lg:grid-cols-2 gap-16 items-center">
+        <div className="relative max-w-7xl mx-auto px-6 py-5 lg:py-5 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-300 mb-6">
               Processo de Gestão de Veículos em Fim de Vida
             </div>
 
             <h2 className="text-5xl lg:text-6xl font-black leading-tight mb-6">
-              Centro de Gestão de veículos em fim de vida
+              Centro de Gestão de Veículos em Fim de Vida
             </h2>
 
             <p className="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl">
-              Centralize todo o processo de receção, descontaminação, desmontagem e reciclagem de veículos com uma plataforma moderna, segura e totalmente orientada para a conformidade ambiental.
+              O Centro de Gestão de Veículos em Fim de Vida oferece soluções integradas e sustentáveis para a gestão eficiente e responsável de veículos no final do seu ciclo de vida.
+              Aposte numa mobilidade mais sustentável e reduza os custos na aquisição do seu novo carro elétrico.
+              Soluções simples, segura e com acompanhamento profissional em todo o processo.
             </p>
 
             <div className="mb-10 rounded-3xl border-2 border-emerald-400 bg-emerald-500/10 p-6 shadow-2xl shadow-emerald-500/20">
@@ -186,15 +188,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <button className="rounded-2xl bg-emerald-500 px-6 py-3 font-semibold text-slate-950 hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20">
-                Solicitar Demonstração
-              </button>
-
-              <button className="rounded-2xl border border-slate-700 px-6 py-3 font-semibold hover:bg-slate-900 transition">
-                Saber Mais
-              </button>
-            </div>
+          
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -587,20 +581,20 @@ export default function App() {
 
             <div className="mt-10 rounded-3xl border border-cyan-500/20 bg-cyan-500/10 p-8">
               <h4 className="text-2xl font-bold mb-4">
-                Armazenamento de Fotografias
+                Para qualquer duvida chamar o Diogo para apoio técnico e gestão de pedidos
               </h4>
 
               <p className="text-slate-300 leading-relaxed mb-6">
-                O sistema encontra-se preparado para integração com armazenamento cloud seguro para fotografias dos veículos.
+                O sistema encontra-se preparado para integração com a automação de processos.
               </p>
 
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="rounded-2xl bg-slate-950 border border-slate-800 p-5">
-                  ☁ Firebase Storage
+                  ☁ Tudo em Nuvem
                 </div>
 
                 <div className="rounded-2xl bg-slate-950 border border-slate-800 p-5">
-                  🗂 Supabase Storage
+                  🗂 Email Automatico
                 </div>
 
                 <div className="rounded-2xl bg-slate-950 border border-slate-800 p-5">
@@ -645,16 +639,16 @@ export default function App() {
       <footer id="contactos" className="border-t border-slate-800 bg-slate-950">
         <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h4 className="text-2xl font-bold mb-2">EcoVFV</h4>
+            <h4 className="text-2xl font-bold mb-2">CGVeículos</h4>
             <p className="text-slate-400 max-w-md">
               Soluções digitais para operadores de gestão de veículos em fim de vida e centros de reciclagem automóvel.
             </p>
           </div>
 
           <div className="md:text-right space-y-2 text-slate-300">
-            <p>📧 contacto@ecovfv.pt</p>
-            <p>📍 Lisboa, Portugal</p>
-            <p>📞 +351 210 000 000</p>
+            <p>📧 pw1@sapo.pt</p>
+            <p>📍 Charneca de Caparica, Portugal</p>
+            <p>📞 +351 961 049 508</p>
           </div>
         </div>
       </footer>
