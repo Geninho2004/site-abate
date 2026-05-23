@@ -184,7 +184,7 @@ export default function App() {
 
               <p className="mt-3 text-slate-300 text-sm">
                 Atendimento rápido para recolha e marcação de veículos em fim de vida.
-                Avaliação gratuita e sem compromisso.
+                Avaliação gratuita e sem compromisso!
               </p>
             </div>
 
