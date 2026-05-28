@@ -51,14 +51,30 @@ export default function App() {
     }
   ]);
 
-  const handlePedido = () => {
+  const encode = (data) => {
+    const form = new FormData();
+
+    Object.keys(data).forEach((key) => {
+      if (key === 'fotos') {
+        data.fotos.forEach((foto) => {
+          form.append('fotos', foto);
+        });
+      } else {
+        form.append(key, data[key]);
+      }
+    });
+
+    return form;
+  };
+
+  const handlePedido = async (e) => {
+    e.preventDefault();
+
     if (
       formData.nome &&
       formData.telefone &&
       formData.veiculo
     ) {
-      setPedidoEnviado(true);
-
       const novoPedido = {
         id: `#VFV-${Math.floor(Math.random() * 9000 + 1000)}`,
         cliente: formData.nome,
@@ -71,19 +87,38 @@ export default function App() {
         }))
       };
 
-      setPedidos([novoPedido, ...pedidos]);
+      try {
+        await fetch('/', {
+          method: 'POST',
+          body: encode({
+            'form-name': 'pedido-abate',
+            nome: formData.nome,
+            telefone: formData.telefone,
+            veiculo: formData.veiculo,
+            descricao: formData.descricao,
+            fotos: formData.fotos
+          }),
+        });
 
-      setFormData({
-        nome: '',
-        telefone: '',
-        veiculo: '',
-        descricao: '',
-        fotos: []
-      });
+        setPedidos([novoPedido, ...pedidos]);
 
-      setTimeout(() => {
-        setPedidoEnviado(false);
-      }, 4000);
+        setPedidoEnviado(true);
+
+        setFormData({
+          nome: '',
+          telefone: '',
+          veiculo: '',
+          descricao: '',
+          fotos: []
+        });
+
+        setTimeout(() => {
+          setPedidoEnviado(false);
+        }, 4000);
+
+      } catch (error) {
+        alert('Erro ao enviar pedido. Tente novamente.');
+      }
     }
   };
 
@@ -133,56 +168,58 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      <header className="border-b border-slate-800 bg-slate-950/90 backdrop-blur sticky top-0 z-50">
+    <div className="min-h-screen bg-white text-slate-800">
+      <header className="border-b border-emerald-200 bg-gradient-to-r from-emerald-50 via-cyan-50 to-white backdrop-blur sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
           <div>
             <h1 className="text-2xl font-bold tracking-tight">CGV</h1>
-            <p className="text-sm text-slate-400">Centro de Gestão de Veículos em Fim de Vida</p>
+            <p className="text-sm text-slate-600">Centro de Gestão de Veículos em Fim de Vida</p>
           </div>
 
-          <nav className="hidden md:flex gap-6 text-sm text-slate-300">
-            <a href="#abate" className="hover:text-white transition">Pedido de Abate</a>
-            <a href="#sobre" className="hover:text-white transition">Sobre</a>
-            <a href="#processo" className="hover:text-white transition">Processo</a>
-            <a href="#indicadores" className="hover:text-white transition">Indicadores</a>
-            <a href="#contactos" className="hover:text-white transition">Contactos</a>
+          <nav className="hidden md:flex gap-6 text-sm text-slate-700">
+            <a href="#abate" className="hover:text-emerald-500 transition">Pedido de Abate</a>
+            <a href="#sobre" className="hover:text-emerald-500 transition">Sobre</a>
+            <a href="#processo" className="hover:text-emerald-500 transition">Processo</a>
+            <a href="#indicadores" className="hover:text-emerald-500 transition">Indicadores</a>
+            <a href="#contactos" className="hover:text-emerald-500 transition">Contactos</a>
           </nav>
         </div>
       </header>
 
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-transparent" />
+       <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 via-cyan-100 to-white opacity-90" />
 
         <div className="relative max-w-7xl mx-auto px-6 py-5 lg:py-5 grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-300 mb-6">
-              Processo de Gestão de Veículos em Fim de Vida
-            </div>
+           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 backdrop-blur-sm px-5 py-3 text-sm font-semibold text-cyan-700 shadow-md mb-6">
+  <div className="h-2 w-2 rounded-full bg-cyan-500 animate-pulse"></div>
+  Processo de Gestão de Veículos em Fim de Vida
+</div>
 
             <h2 className="text-5xl lg:text-6xl font-black leading-tight mb-6">
               Centro de Gestão de Veículos em Fim de Vida
             </h2>
 
-            <p className="text-lg text-slate-300 leading-relaxed mb-8 max-w-xl">
+            <p className="text-lg text-slate-700 leading-relaxed mb-8 max-w-xl">
               O Centro de Gestão de Veículos em Fim de Vida oferece soluções integradas e sustentáveis para a gestão eficiente e responsável de veículos no final do seu ciclo de vida.
               Aposte numa mobilidade mais sustentável e reduza os custos na aquisição do seu novo carro elétrico.
               Soluções simples, segura e com acompanhamento profissional em todo o processo.
             </p>
 
-            <div className="mb-10 rounded-3xl border-2 border-emerald-400 bg-emerald-500/10 p-6 shadow-2xl shadow-emerald-500/20">
+            <div className="mb-10 rounded-3xl border border-emerald-200 bg-white p-6 shadow-xl">
+            
               <p className="text-sm uppercase tracking-[0.3em] text-emerald-300 mb-3 font-semibold">
                 Ligue já para marcar
               </p>
 
               <a
                 href="tel:+351961049508"
-                className="block text-4xl lg:text-5xl font-black text-white hover:text-emerald-300 transition"
+               className="block text-4xl lg:text-5xl font-black text-slate-800 hover:text-emerald-500 transition"
               >
                 +351 961 049 508
               </a>
 
-              <p className="mt-3 text-slate-300 text-sm">
+              <p className="mt-3 text-slate-700 text-sm">
                 Atendimento rápido para recolha e marcação de veículos em fim de vida.
                 Avaliação gratuita e sem compromisso!
               </p>
@@ -195,66 +232,70 @@ export default function App() {
             {indicadores.map((item, index) => (
               <div
                 key={index}
-                className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 backdrop-blur shadow-2xl"
+                className="rounded-3xl border border-emerald-100 bg-white p-8 shadow-xl"
               >
                 <div className="text-4xl font-black text-emerald-400 mb-2">{item.valor}</div>
-                <p className="text-slate-300">{item.legenda}</p>
+                <p className="text-slate-700">{item.legenda}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="sobre" className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section
+  id="sobre"
+  className="relative overflow-hidden py-24"
+>
+  <div className="absolute inset-0 bg-gradient-to-b from-cyan-50 via-white to-emerald-50 opacity-80" />
+        <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h3 className="text-4xl font-bold mb-6">Transforme a gestão ambiental da sua operação</h3>
-            <p className="text-slate-300 leading-relaxed mb-6">
+            <p className="text-slate-600 leading-relaxed mb-6">
               A plataforma EcoVFV permite gerir todas as etapas do processo de veículos em fim de vida, garantindo rastreabilidade, eficiência operacional e conformidade com as normas ambientais em vigor.
             </p>
 
             <div className="space-y-4">
-              <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+              <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md">
                 <h4 className="font-semibold mb-2">Gestão documental</h4>
-                <p className="text-sm text-slate-400">Arquivo digital de certificados, matrículas e comprovativos legais.</p>
+                <p className="text-sm text-slate-500">Arquivo digital de certificados, matrículas e comprovativos legais.</p>
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+              <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md">
                 <h4 className="font-semibold mb-2">Rastreabilidade completa</h4>
-                <p className="text-sm text-slate-400">Acompanhe o estado de cada veículo em tempo real.</p>
+                <p className="text-sm text-slate-500">Acompanhe o estado de cada veículo em tempo real.</p>
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+              <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md">
                 <h4 className="font-semibold mb-2">Relatórios automáticos</h4>
-                <p className="text-sm text-slate-400">Obtenha métricas ambientais e operacionais instantaneamente.</p>
+                <p className="text-sm text-slate-500">Obtenha métricas ambientais e operacionais instantaneamente.</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-10 shadow-2xl">
+          <div className="rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-white to-emerald-50 p-10 shadow-2xl">
             <div className="space-y-6">
               <div>
-                <p className="text-sm text-slate-400 mb-2">Estado do processo</p>
+                <p className="text-sm text-slate-500 mb-2">Estado do processo</p>
                 <div className="h-3 rounded-full bg-slate-800 overflow-hidden">
                   <div className="h-full w-[78%] bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-2xl bg-slate-900 border border-slate-800 p-5">
+                <div className="rounded-2xl hover:bg-emerald-50 border border-emerald-100 p-5">
                   <div className="text-2xl font-bold">1.248</div>
-                  <p className="text-sm text-slate-400">Veículos ativos</p>
+                  <p className="text-sm text-slate-500">Veículos ativos</p>
                 </div>
 
-                <div className="rounded-2xl bg-slate-900 border border-slate-800 p-5">
+                <div className="rounded-2xl hover:bg-emerald-50 border border-emerald-100 p-5">
                   <div className="text-2xl font-bold">312</div>
-                  <p className="text-sm text-slate-400">Peças recuperadas</p>
+                  <p className="text-sm text-slate-500">Peças recuperadas</p>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-6">
                 <p className="text-emerald-300 font-medium mb-2">Sustentabilidade em foco</p>
-                <p className="text-sm text-slate-300">
+                <p className="text-sm text-slate-600">
                   Reduza desperdícios e maximize o reaproveitamento de materiais com processos automatizados.
                 </p>
               </div>
@@ -263,11 +304,11 @@ export default function App() {
         </div>
       </section>
 
-      <section id="processo" className="bg-slate-900/60 border-y border-slate-800">
+      <section id="processo" className="bg-emerald-50 border-y border-emerald-100">
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="text-center mb-14">
             <h3 className="text-4xl font-bold mb-4">Fluxo do Processo</h3>
-            <p className="text-slate-400 max-w-2xl mx-auto">
+            <p className="text-slate-500 max-w-2xl mx-auto">
               Um sistema completo para controlar cada etapa do ciclo de tratamento dos veículos.
             </p>
           </div>
@@ -276,14 +317,14 @@ export default function App() {
             {etapas.map((etapa, index) => (
               <div
                 key={index}
-                className="relative rounded-3xl border border-slate-800 bg-slate-950 p-8 hover:border-emerald-400/40 transition"
+                className="relative rounded-3xl border border-emerald-100 bg-white p-8 hover:border-emerald-300 transition shadow-lg"
               >
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 text-xl font-bold">
                   0{index + 1}
                 </div>
 
                 <h4 className="text-xl font-semibold mb-3">{etapa.titulo}</h4>
-                <p className="text-slate-400 text-sm leading-relaxed">{etapa.descricao}</p>
+                <p className="text-slate-500 text-sm leading-relaxed">{etapa.descricao}</p>
               </div>
             ))}
           </div>
@@ -291,20 +332,20 @@ export default function App() {
       </section>
 
       <section id="indicadores" className="max-w-7xl mx-auto px-6 py-20">
-        <div className="rounded-[2rem] border border-slate-800 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 p-10 lg:p-16">
+        <div className="rounded-[2rem] border border-emerald-100 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 p-10 lg:p-16">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <h3 className="text-4xl font-bold mb-6">Indicadores e conformidade ambiental</h3>
-              <p className="text-slate-300 leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 Monitorize KPIs operacionais, emissões evitadas, materiais reciclados e desempenho ambiental através de dashboards intuitivos.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-5">
               {indicadores.map((item, index) => (
-                <div key={index} className="rounded-2xl bg-slate-950/80 border border-slate-800 p-6">
+                <div key={index} className="rounded-2xl bg-white/80 border border-emerald-100 p-6">
                   <div className="text-3xl font-black text-cyan-300 mb-2">{item.valor}</div>
-                  <div className="text-sm text-slate-400">{item.legenda}</div>
+                  <div className="text-sm text-slate-500">{item.legenda}</div>
                 </div>
               ))}
             </div>
@@ -312,7 +353,7 @@ export default function App() {
         </div>
       </section>
 
-      <section id="abate" className="bg-slate-900/60 border-y border-slate-800">
+      <section id="abate" className="hover:bg-emerald-50/60 border-y border-emerald-100">
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-start">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300 mb-6">
@@ -323,66 +364,80 @@ export default function App() {
               Envie fotografias do veículo para abate
             </h3>
 
-            <p className="text-slate-300 leading-relaxed mb-8">
+            <p className="text-slate-600 leading-relaxed mb-8">
               Os clientes podem preencher o formulário, enviar fotografias do carro e solicitar rapidamente a recolha ou o processo de abate.
             </p>
 
             <div className="space-y-4">
-              <div className="rounded-2xl border border-slate-800 bg-slate-950 p-5">
-                <p className="text-sm text-slate-400 mb-2">✔ Upload de fotografias</p>
-                <p className="text-sm text-slate-400 mb-2">✔ Pedido de recolha</p>
-                <p className="text-sm text-slate-400 mb-2">✔ Contacto direto</p>
-                <p className="text-sm text-slate-400">✔ Gestão pelo administrador</p>
+              <div className="rounded-2xl border border-emerald-100 bg-white p-5">
+                <p className="text-sm text-slate-500 mb-2">✔ Upload de fotografias</p>
+                <p className="text-sm text-slate-500 mb-2">✔ Pedido de recolha</p>
+                <p className="text-sm text-slate-500 mb-2">✔ Contacto direto</p>
+                <p className="text-sm text-slate-500">✔ Gestão pelo administrador</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-slate-800 bg-slate-950 p-8 shadow-2xl">
+          <div className="rounded-[2rem] border border-emerald-100 bg-white p-8 shadow-2xl">
             <h4 className="text-2xl font-bold mb-6">Formulário de Pedido</h4>
 
-            <div className="space-y-5">
-              <input
-                value={formData.nome}
+            <form
+              name="pedido-abate"
+              method="POST"
+              data-netlify="true"
+              encType="multipart/form-data"
+              onSubmit={handlePedido}
+            >
+              <input type="hidden" name="form-name" value="pedido-abate" />
+
+              <div className="space-y-5">
+                <input
+                  name="nome"
+                  value={formData.nome}
                 onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
                 type="text"
                 placeholder="Nome completo"
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-5 py-4 outline-none focus:border-emerald-400"
+                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
-              <input
-                value={formData.telefone}
+                <input
+                  name="telefone"
+                  value={formData.telefone}
                 onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
                 type="tel"
                 placeholder="Número de telefone"
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-5 py-4 outline-none focus:border-emerald-400"
+                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
-              <input
-                value={formData.veiculo}
+                <input
+                  name="veiculo"
+                  value={formData.veiculo}
                 onChange={(e) => setFormData({ ...formData, veiculo: e.target.value })}
                 type="text"
                 placeholder="Marca e modelo do veículo"
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-5 py-4 outline-none focus:border-emerald-400"
+                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
-              <textarea
-                value={formData.descricao}
+                <textarea
+                  name="descricao"
+                  value={formData.descricao}
                 onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
                 placeholder="Descreva o estado do veículo"
                 rows={4}
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-5 py-4 outline-none focus:border-emerald-400"
+                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
-              <div className="rounded-2xl border-2 border-dashed border-slate-700 bg-slate-900/50 p-8 text-center">
-                <p className="text-slate-300 mb-3">Adicionar fotografias do veículo</p>
+              <div className="rounded-2xl border-2 border-dashed border-emerald-200 bg-emerald-50 p-8 text-center">
+                <p className="text-slate-600 mb-3">Adicionar fotografias do veículo</p>
                 <input
+                  name="fotos"
                   type="file"
                   multiple
                   onChange={(e) => setFormData({
                     ...formData,
                     fotos: Array.from(e.target.files || [])
                   })}
-                  className="text-sm text-slate-400"
+                  className="text-sm text-slate-500"
                 />
 
                 {formData.fotos.length > 0 && (
@@ -392,34 +447,35 @@ export default function App() {
                 )}
               </div>
 
-              <button
-                onClick={handlePedido}
-                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
-              >
+                <button
+                  type="submit"
+                  className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
+                >
                 Enviar Pedido
               </button>
 
-              {pedidoEnviado && (
-                <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
-                  <p className="text-emerald-300 font-semibold mb-1">
-                    Pedido enviado com sucesso
-                  </p>
-                  <p className="text-sm text-slate-300">
-                    A nossa equipa irá entrar em contacto brevemente.
-                  </p>
-                </div>
-              )}
-            </div>
+                {pedidoEnviado && (
+                  <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
+                    <p className="text-emerald-300 font-semibold mb-1">
+                      Pedido enviado com sucesso
+                    </p>
+                    <p className="text-sm text-slate-600">
+                      A nossa equipa irá entrar em contacto brevemente.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </form>
           </div>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-20">
         {!adminLogado ? (
-          <div className="max-w-xl mx-auto rounded-[2rem] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-10 shadow-2xl">
+          <div className="max-w-xl mx-auto rounded-[2rem] border border-emerald-100 bg-white p-10 shadow-2xl">
             <div className="text-center mb-8">
               <h3 className="text-4xl font-bold mb-4">Entrar</h3>
-              <p className="text-slate-400">
+              <p className="text-slate-500">
                 Aceda à sua conta para consultar pedidos e gerir veículos.
               </p>
             </div>
@@ -430,7 +486,7 @@ export default function App() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-5 py-4 outline-none focus:border-emerald-400"
+                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
               <input
@@ -438,7 +494,7 @@ export default function App() {
                 placeholder="Palavra-passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-5 py-4 outline-none focus:border-emerald-400"
+                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
               <button
@@ -450,7 +506,7 @@ export default function App() {
             </div>
           </div>
         ) : (
-          <div className="rounded-[2rem] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-10 lg:p-14 shadow-2xl">
+          <div className="rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-white to-emerald-50 p-10 lg:p-14 shadow-2xl">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-10">
               <div>
                 <p className="text-emerald-300 text-sm uppercase tracking-[0.3em] mb-3">
@@ -461,14 +517,14 @@ export default function App() {
                   Gestão de Pedidos
                 </h3>
 
-                <p className="text-slate-400">
+                <p className="text-slate-500">
                   Consulte pedidos enviados pelos clientes e visualize fotografias dos veículos.
                 </p>
               </div>
 
               <button
                 onClick={() => setAdminLogado(false)}
-                className="rounded-2xl border border-slate-700 px-6 py-3 font-semibold hover:bg-slate-900 transition"
+                className="rounded-2xl border border-emerald-200 px-6 py-3 font-semibold hover:bg-white text-slate-800 transition"
               >
                 Terminar Sessão
               </button>
@@ -478,7 +534,7 @@ export default function App() {
               {pedidos.map((pedido, index) => (
                 <div
                   key={index}
-                  className="rounded-3xl border border-slate-800 bg-slate-950 p-8"
+                  className="rounded-3xl border border-emerald-100 bg-white p-8"
                 >
                   <div className="grid lg:grid-cols-4 gap-6 items-start">
                     <div>
@@ -489,15 +545,15 @@ export default function App() {
                     <div>
                       <p className="text-sm text-slate-500 mb-2">Cliente</p>
                       <p className="font-semibold">{pedido.cliente}</p>
-                      <p className="text-sm text-slate-400">{pedido.telefone}</p>
+                      <p className="text-sm text-slate-500">{pedido.telefone}</p>
                     </div>
 
                     <div>
                       <p className="text-sm text-slate-500 mb-2">Veículo</p>
                       <p className="font-semibold">{pedido.veiculo}</p>
 
-                      <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-900/50 p-4">
-                        <p className="text-sm text-slate-400 mb-4 font-medium">
+                      <div className="mt-5 rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
+                        <p className="text-sm text-slate-500 mb-4 font-medium">
                           Atualizar estado do pedido
                         </p>
 
@@ -532,9 +588,9 @@ export default function App() {
 
                     <div>
                       <div className="flex items-center justify-between mb-3">
-                        <p className="text-sm font-medium text-slate-300">Fotografias do Veículo</p>
+                        <p className="text-sm font-medium text-slate-600">Fotografias do Veículo</p>
 
-                        <div className="rounded-full bg-slate-900 border border-slate-700 px-3 py-1 text-xs text-slate-400">
+                        <div className="rounded-full hover:bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs text-slate-500">
                           {pedido.fotos.length} imagens
                         </div>
                       </div>
@@ -544,7 +600,7 @@ export default function App() {
                           <div
                             key={i}
                             onClick={() => setFotoPreview(foto.url)}
-                            className="group relative aspect-square overflow-hidden rounded-2xl border border-slate-700 cursor-pointer"
+                            className="group relative aspect-square overflow-hidden rounded-2xl border border-emerald-200 cursor-pointer"
                           >
                             <img
                               src={foto.url}
@@ -563,7 +619,7 @@ export default function App() {
                         ))}
                       </div>
 
-                      <p className="mt-3 text-sm text-slate-400">
+                      <p className="mt-3 text-sm text-slate-500">
                         {pedido.fotos.length} fotografias armazenadas
                       </p>
 
@@ -584,20 +640,20 @@ export default function App() {
                 Para qualquer duvida chamar o Diogo para apoio técnico e gestão de pedidos
               </h4>
 
-              <p className="text-slate-300 leading-relaxed mb-6">
+              <p className="text-slate-600 leading-relaxed mb-6">
                 O sistema encontra-se preparado para integração com a automação de processos.
               </p>
 
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="rounded-2xl bg-slate-950 border border-slate-800 p-5">
+                <div className="rounded-2xl bg-white border border-emerald-100 p-5">
                   ☁ Tudo em Nuvem
                 </div>
 
-                <div className="rounded-2xl bg-slate-950 border border-slate-800 p-5">
+                <div className="rounded-2xl bg-white border border-emerald-100 p-5">
                   🗂 Email Automatico
                 </div>
 
-                <div className="rounded-2xl bg-slate-950 border border-slate-800 p-5">
+                <div className="rounded-2xl bg-white border border-emerald-100 p-5">
                   🔒 Armazenamento Seguro
                 </div>
               </div>
@@ -636,16 +692,16 @@ export default function App() {
         </div>
       )}
 
-      <footer id="contactos" className="border-t border-slate-800 bg-slate-950">
+      <footer id="contactos" className="border-t border-emerald-100 bg-white">
         <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h4 className="text-2xl font-bold mb-2">CGVeículos</h4>
-            <p className="text-slate-400 max-w-md">
+            <p className="text-slate-500 max-w-md">
               Soluções digitais para operadores de gestão de veículos em fim de vida e centros de reciclagem automóvel.
             </p>
           </div>
 
-          <div className="md:text-right space-y-2 text-slate-300">
+          <div className="md:text-right space-y-2 text-slate-600">
             <p>📧 pw1@sapo.pt</p>
             <p>📍 Charneca de Caparica, Portugal</p>
             <p>📞 +351 961 049 508</p>

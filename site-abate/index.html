@@ -6,8 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>site-abate</title>
   </head>
+
   <body>
+
+    <!-- FORMULÁRIO NETLIFY -->
+    <form
+      name="pedido-abate"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" name="form-name" value="pedido-abate" />
+
+      <input type="text" name="nome" />
+      <input type="text" name="telefone" />
+      <input type="text" name="veiculo" />
+      <textarea name="descricao"></textarea>
+      <input type="file" name="fotos" multiple />
+    </form>
+
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
