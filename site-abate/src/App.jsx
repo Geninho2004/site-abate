@@ -51,41 +51,37 @@ export default function App() {
     }
   ]);
 
-  const handlePedido = () => {
-    if (
-      formData.nome &&
-      formData.telefone &&
-      formData.veiculo
-    ) {
-      setPedidoEnviado(true);
+  const handlePedido = async (e) => {
+  e.preventDefault();
 
-      const novoPedido = {
-        id: `#VFV-${Math.floor(Math.random() * 9000 + 1000)}`,
-        cliente: formData.nome,
-        telefone: formData.telefone,
-        veiculo: formData.veiculo,
-        estado: 'Novo Pedido',
-        fotos: formData.fotos.map((foto) => ({
-          nome: foto.name,
-          url: URL.createObjectURL(foto)
-        }))
-      };
+  const form = e.currentTarget;
+  const dados = new FormData(form);
 
-      setPedidos([novoPedido, ...pedidos]);
+  try {
+    await fetch("/", {
+      method: "POST",
+      body: dados,
+    });
 
-      setFormData({
-        nome: '',
-        telefone: '',
-        veiculo: '',
-        descricao: '',
-        fotos: []
-      });
+    setPedidoEnviado(true);
 
-      setTimeout(() => {
-        setPedidoEnviado(false);
-      }, 4000);
-    }
-  };
+    setFormData({
+      nome: '',
+      telefone: '',
+      veiculo: '',
+      descricao: '',
+      fotos: []
+    });
+
+    form.reset();
+
+    setTimeout(() => {
+      setPedidoEnviado(false);
+    }, 4000);
+  } catch (error) {
+    console.error("Erro ao enviar formulário:", error);
+  }
+};
 
   const atualizarEstadoPedido = (id, novoEstado) => {
     setPedidos(
@@ -542,12 +538,12 @@ const indicadores = [
           )}
         </div>
 
-        <button
-          type="submit"
-          className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
-        >
-          Enviar Pedido
-        </button>
+       <button
+  type="submit"
+  className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
+>
+  Enviar Pedido
+</button>
 
         {pedidoEnviado && (
           <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
