@@ -61,9 +61,9 @@ const handlePedido = async (e) => {
   dados.append('Veiculo', formData.veiculo);
   dados.append('Descricao', formData.descricao);
 
-  formData.fotos.forEach((foto) => {
-    dados.append('Fotos', foto);
-  });
+ formData.fotos.forEach((foto) => {
+  dados.append('Fotos[]', foto, foto.name);
+});
 
   await fetch('/', {
     method: 'POST',
@@ -523,7 +523,7 @@ const indicadores = [
           </p>
 
           <input
-            name="fotos"
+            name="Fotos[]"
             type="file"
             multiple
             onChange={(e) => setFormData({
