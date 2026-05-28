@@ -174,14 +174,14 @@ const indicadores = [
       <section className="relative overflow-hidden">
        <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 via-cyan-100 to-white opacity-90" />
 
-        <div className="relative max-w-[1600px] mx-auto px-10 py-12 lg:py-20 grid lg:grid-cols-[1.1fr_1.3fr] gap-20 items-center">
+        <div className="relative max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-10 py-10 lg:py-20 grid lg:grid-cols-[1.1fr_1.3fr] gap-10 lg:gap-20 items-center">
           <div>
            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 backdrop-blur-sm px-5 py-3 text-sm font-semibold text-cyan-700 shadow-md mb-6">
   <div className="h-2 w-2 rounded-full bg-cyan-500 animate-pulse"></div>
   Processo de Gestão de Veículos em Fim de Vida
 </div>
 
-            <h2 className="text-5xl lg:text-6xl font-black leading-tight mb-6">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
               Centro de Gestão de Veículos em Fim de Vida
             </h2>
 
@@ -199,7 +199,7 @@ const indicadores = [
 
               <a
                 href="tel:+351961049508"
-               className="block text-4xl lg:text-5xl font-black text-slate-800 hover:text-emerald-500 transition"
+               className="block text-3xl sm:text-4xl lg:text-5xl font-black text-slate-800 hover:text-emerald-500 transition break-words"
               >
                 +351 961 049 508
               </a>
@@ -216,7 +216,7 @@ const indicadores = [
   <img
     src="/camiao-cgv.png"
     alt="Camião CGV"
-    className="h-full min-h-[599px] w-full object-cover"
+    className="h-[420px] sm:h-[520px] lg:min-h-[599px] w-full object-cover"
   />
 
   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
@@ -388,8 +388,8 @@ const indicadores = [
 </section>
     
 
-      <section id="indicadores" className="max-w-[1700px] mx-auto px-8 py-24">
-        <div className="w-full rounded-[2.5rem] border border-emerald-100 bg-gradient-to-r from-emerald-100/70 via-cyan-100/60 to-emerald-50 p-14 lg:p-20 shadow-2xl">
+      <section id="indicadores" className="max-w-[1700px] mx-auto px-5 sm:px-8 py-16 lg:py-24">
+        <div className="w-full rounded-[2rem] lg:rounded-[2.5rem] border border-emerald-100 bg-gradient-to-r from-emerald-100/70 via-cyan-100/60 to-emerald-50 p-6 sm:p-10 lg:p-20 shadow-2xl">
           <div className="grid lg:grid-cols-[0.9fr_1.4fr] gap-16 items-center">
             <div>
               <h3 className="text-4xl font-bold mb-6">Veiculos Estrangeiros</h3>
@@ -398,7 +398,7 @@ const indicadores = [
               </p>
             </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
   {indicadores.map((item, index) => (
     <div
       key={index}
