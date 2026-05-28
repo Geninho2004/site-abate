@@ -127,17 +127,26 @@ const indicadores = [
     <div className="min-h-screen bg-white text-slate-800 overflow-x-hidden">
       <header className="border-b border-emerald-200 bg-gradient-to-r from-emerald-50 via-cyan-50 to-white backdrop-blur sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-5 sm:px-6 py-4">
+        
         <a
   href="#"
-  className="group cursor-pointer block transition"
+  className="group cursor-pointer flex items-center gap-3 transition"
 >
-  <h1 className="text-2xl font-bold tracking-tight text-slate-800 group-hover:text-emerald-500 transition duration-300">
-    CGV
-  </h1>
+  <img
+    src="/logo1.png"
+    alt="Logo CGV"
+    className="w-18 h-16 object-contain"
+  />
 
-  <p className="text-sm text-slate-600 group-hover:text-emerald-500 transition duration-300">
-    Centro de Gestão de Veículos em Fim de Vida
-  </p>
+  <div>
+    <h1 className="text-2xl font-bold tracking-tight text-slate-800 group-hover:text-emerald-500 transition duration-300">
+      CGV
+    </h1>
+
+    <p className="text-sm text-slate-600 group-hover:text-emerald-500 transition duration-300">
+      Centro de Gestão de Veículos em Fim de Vida
+    </p>
+  </div>
 </a>
 
          <nav className="flex items-center justify-end">
@@ -617,9 +626,22 @@ const indicadores = [
       <footer id="contactos" className="border-t border-emerald-100 bg-white">
         <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h4 className="text-2xl font-bold mb-2">CGVeículos</h4>
-            <p className="text-slate-500 max-w-md">
-              Soluções digitais para operadores de gestão de veículos em fim de vida e centros de reciclagem automóvel.
+            
+            <div className="flex items-center gap-3 mb-3">
+  <img
+    src="/logo1.png"
+    alt="Logo CGV"
+    className="w-16 h-18 object-contain"
+  />
+
+  <h4 className="text-2xl font-bold text-slate-800">
+    CGVeículos
+  </h4>
+</div>
+            
+            <p className="text-slate-500 text-sm">
+              Gestão de veículos em fim de vida. Pedido de abate, recolha, documentação e pagamento imediato. Serviço rápido e profissional em Portugal e veículos estrangeiros.
+              Apoio ao incentivo na compra de carros elétricos.
             </p>
           </div>
 
