@@ -51,36 +51,38 @@ export default function App() {
     }
   ]);
 
-  const handlePedido = async (e) => {
+const handlePedido = async (e) => {
   e.preventDefault();
 
-  const form = e.currentTarget;
-  const dados = new FormData(form);
+  const dados = new FormData();
+  dados.append('form-name', 'pedido-abate');
+  dados.append('Nome', formData.nome);
+  dados.append('Telefone', formData.telefone);
+  dados.append('Veiculo', formData.veiculo);
+  dados.append('Descricao', formData.descricao);
 
-  try {
-    await fetch("/", {
-      method: "POST",
-      body: dados,
-    });
+  formData.fotos.forEach((foto) => {
+    dados.append('Fotos', foto);
+  });
 
-    setPedidoEnviado(true);
+  await fetch('/', {
+    method: 'POST',
+    body: dados,
+  });
 
-    setFormData({
-      nome: '',
-      telefone: '',
-      veiculo: '',
-      descricao: '',
-      fotos: []
-    });
+  setPedidoEnviado(true);
 
-    form.reset();
+  setFormData({
+    nome: '',
+    telefone: '',
+    veiculo: '',
+    descricao: '',
+    fotos: []
+  });
 
-    setTimeout(() => {
-      setPedidoEnviado(false);
-    }, 4000);
-  } catch (error) {
-    console.error("Erro ao enviar formulário:", error);
-  }
+  setTimeout(() => {
+    setPedidoEnviado(false);
+  }, 4000);
 };
 
   const atualizarEstadoPedido = (id, novoEstado) => {
@@ -539,7 +541,8 @@ const indicadores = [
         </div>
 
        <button
-  type="submit"
+  type="button"
+  onClick={handlePedido}
   className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
 >
   Enviar Pedido
