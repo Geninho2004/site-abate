@@ -166,7 +166,7 @@ const indicadores = [
       <section className="relative overflow-hidden">
        <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 via-cyan-100 to-white opacity-90" />
 
-        <div className="relative max-w-7xl mx-auto px-6 py-12 lg:py-20 grid lg:grid-cols-[1fr_1.25fr] gap-12 items-center">
+        <div className="relative max-w-[1600px] mx-auto px-10 py-12 lg:py-20 grid lg:grid-cols-[1.1fr_1.3fr] gap-20 items-center">
           <div>
            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 backdrop-blur-sm px-5 py-3 text-sm font-semibold text-cyan-700 shadow-md mb-6">
   <div className="h-2 w-2 rounded-full bg-cyan-500 animate-pulse"></div>
@@ -204,11 +204,11 @@ const indicadores = [
 
           
           </div>
-<div className="relative overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-2xl">
+<div className="relative overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-2xl ml-auto max-w-[720px]">
   <img
-    src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1400&auto=format&fit=crop"
-    alt="Veículo"
-    className="h-full min-h-[620px] w-full object-cover"
+    src="/camiao-cgv.png"
+    alt="Camião CGV"
+    className="h-full min-h-[599px] w-full object-cover"
   />
 
   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
@@ -219,7 +219,7 @@ const indicadores = [
     </p>
 
     <h4 className="text-4xl font-black leading-tight">
-      Tratamos do processo de abate e documentação
+      Gerimos o processo de abate do seu veículo com rapidez
     </h4>
 
     <p className="mt-4 max-w-lg text-white/90">
