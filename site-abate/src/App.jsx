@@ -55,7 +55,6 @@ const handlePedido = async (e) => {
   e.preventDefault();
 
   const dados = new FormData();
-
   dados.append('form-name', 'pedido-abate');
   dados.append('Nome', formData.nome);
   dados.append('Telefone', formData.telefone);
@@ -81,9 +80,7 @@ const handlePedido = async (e) => {
     fotos: []
   });
 
-  setTimeout(() => {
-    setPedidoEnviado(false);
-  }, 4000);
+  setTimeout(() => setPedidoEnviado(false), 4000);
 };
 
   const atualizarEstadoPedido = (id, novoEstado) => {
@@ -474,10 +471,6 @@ const indicadores = [
 
      <form
   name="pedido-abate"
-  method="POST"
-  data-netlify="true"
-  netlify
-  encType="multipart/form-data"
   onSubmit={handlePedido}
   className="space-y-5"
 >

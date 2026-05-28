@@ -19,21 +19,15 @@
   <body>
 
     <!-- FORMULÁRIO NETLIFY -->
-    <form
-      name="pedido-abate"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      hidden
-      enctype="multipart/form-data"
-    >
-      <input type="hidden" name="form-name" value="pedido-abate" />
-
-      <input type="text" name="nome" />
-      <input type="text" name="telefone" />
-      <input type="text" name="veiculo" />
-      <textarea name="descricao"></textarea>
-      <input type="file" name="fotos" multiple />
-    </form>
+    <form name="pedido-abate" netlify netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="pedido-abate" />
+  <input name="bot-field" />
+  <input name="Nome" />
+  <input name="Telefone" />
+  <input name="Veiculo" />
+  <textarea name="Descricao"></textarea>
+  <input name="Fotos" type="file" />
+</form>
 
     <div id="root"></div>
 
