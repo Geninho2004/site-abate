@@ -483,7 +483,7 @@ const indicadores = [
         <input type="hidden" name="form-name" value="pedido-abate" />
 
         <input
-          name="nome"
+          name="Nome"
           value={formData.nome}
           onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
           type="text"
@@ -492,7 +492,7 @@ const indicadores = [
         />
 
         <input
-          name="telefone"
+          name="Telefone"
           value={formData.telefone}
           onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
           type="tel"
@@ -501,7 +501,7 @@ const indicadores = [
         />
 
         <input
-          name="veiculo"
+          name="Veiculo"
           value={formData.veiculo}
           onChange={(e) => setFormData({ ...formData, veiculo: e.target.value })}
           type="text"
@@ -510,7 +510,7 @@ const indicadores = [
         />
 
         <textarea
-          name="descricao"
+          name="Descricao"
           value={formData.descricao}
           onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
           placeholder="Descreva o estado do veículo"
