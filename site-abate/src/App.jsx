@@ -55,14 +55,16 @@ const handlePedido = async (e) => {
   e.preventDefault();
 
   const dados = new FormData();
- dados.append('Nome', formData.nome);
-dados.append('Telefone', formData.telefone);
-dados.append('Veiculo', formData.veiculo);
-dados.append('Descricao', formData.descricao);
 
-formData.fotos.forEach((foto) => {
-  dados.append('Fotos', foto, foto.name);
-});
+  dados.append('form-name', 'pedido-abate');
+  dados.append('Nome', formData.nome);
+  dados.append('Telefone', formData.telefone);
+  dados.append('Veiculo', formData.veiculo);
+  dados.append('Descricao', formData.descricao);
+
+  formData.fotos.forEach((foto) => {
+    dados.append('Fotos', foto, foto.name);
+  });
 
   await fetch('/', {
     method: 'POST',
@@ -539,9 +541,8 @@ const indicadores = [
           )}
         </div>
 
-       <button
-  type="button"
-  onClick={handlePedido}
+      <button
+  type="submit"
   className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
 >
   Enviar Pedido
