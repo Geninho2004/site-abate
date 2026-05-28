@@ -106,24 +106,7 @@ export default function App() {
       setAdminLogado(true);
     }
   };
-  const etapas = [
-    {
-      titulo: 'Receção do Veículo',
-      descricao: 'Registo da entrada do veículo, verificação documental e identificação do proprietário.'
-    },
-    {
-      titulo: 'Descontaminação',
-      descricao: 'Remoção segura de óleos, baterias, combustíveis e outros resíduos perigosos.'
-    },
-    {
-      titulo: 'Desmontagem',
-      descricao: 'Separação de peças reutilizáveis e componentes recicláveis.'
-    },
-    {
-      titulo: 'Reciclagem',
-      descricao: 'Encaminhamento de materiais para reciclagem e reaproveitamento industrial.'
-    }
-  ];
+ 
 
 const indicadores = [
   {
@@ -148,18 +131,43 @@ const indicadores = [
     <div className="min-h-screen bg-white text-slate-800">
       <header className="border-b border-emerald-200 bg-gradient-to-r from-emerald-50 via-cyan-50 to-white backdrop-blur sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">CGV</h1>
-            <p className="text-sm text-slate-600">Centro de Gestão de Veículos em Fim de Vida</p>
-          </div>
+        <a
+  href="#"
+  className="group cursor-pointer block transition"
+>
+  <h1 className="text-2xl font-bold tracking-tight text-slate-800 group-hover:text-emerald-500 transition duration-300">
+    CGV
+  </h1>
 
-          <nav className="hidden md:flex gap-6 text-sm text-slate-700">
-            <a href="#abate" className="hover:text-emerald-500 transition">Pedido de Abate</a>
-            <a href="#sobre" className="hover:text-emerald-500 transition">Sobre</a>
-            <a href="#processo" className="hover:text-emerald-500 transition">Processo</a>
-            <a href="#indicadores" className="hover:text-emerald-500 transition">Indicadores</a>
-            <a href="#contactos" className="hover:text-emerald-500 transition">Contactos</a>
-          </nav>
+  <p className="text-sm text-slate-600 group-hover:text-emerald-500 transition duration-300">
+    Centro de Gestão de Veículos em Fim de Vida
+  </p>
+</a>
+
+          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-700">
+  
+  <a href="#abate" className="hover:text-emerald-500 transition">Pedido de Abate</a>
+  
+
+  <a href="#indicadores" className="hover:text-emerald-500 transition">
+    Internacional
+  </a>
+
+<a href="#sobre" className="hover:text-emerald-500 transition">
+    Sobre
+  </a>
+
+  <a href="#contactos" className="hover:text-emerald-500 transition">
+    Contactos
+  </a>
+
+  <a
+    href="tel:+351961049508"
+    className="rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-white font-bold shadow-lg hover:scale-105 hover:shadow-emerald-200 transition duration-300"
+  >
+    📞 Ligar
+  </a>
+</nav>
         </div>
       </header>
 
@@ -177,7 +185,7 @@ const indicadores = [
               Centro de Gestão de Veículos em Fim de Vida
             </h2>
 
-            <p className="text-lg text-slate-700 leading-relaxed mb-8 max-w-xl">
+            <p className="text-xl text-slate-700 leading-relaxed mb-8 max-w-2xl">
               O Centro de Gestão de Veículos em Fim de Vida oferece soluções integradas e sustentáveis para a gestão eficiente e responsável de veículos no final do seu ciclo de vida.
               Aposte numa mobilidade mais sustentável e reduza os custos na aquisição do seu novo carro elétrico.
               Soluções simples, segura e com acompanhamento profissional em todo o processo.
@@ -198,7 +206,7 @@ const indicadores = [
 
               <p className="mt-3 text-slate-700 text-sm">
                 Atendimento rápido para recolha e marcação de veículos em fim de vida.
-                Avaliação gratuita e sem compromisso!
+                Avaliação gratuita e sem compromisso! Reboque gratuito e pagamento imediato.
               </p>
             </div>
 
@@ -231,94 +239,154 @@ const indicadores = [
         </div>
       </section>
 
-      <section
+<section
   id="sobre"
   className="relative overflow-hidden py-24"
 >
   <div className="absolute inset-0 bg-gradient-to-b from-cyan-50 via-white to-emerald-50 opacity-80" />
-        <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h3 className="text-4xl font-bold mb-6">Transforme a gestão ambiental da sua operação</h3>
-            <p className="text-slate-600 leading-relaxed mb-6">
-              A plataforma EcoVFV permite gerir todas as etapas do processo de veículos em fim de vida, garantindo rastreabilidade, eficiência operacional e conformidade com as normas ambientais em vigor.
-            </p>
 
-            <div className="space-y-4">
-              <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md">
-                <h4 className="font-semibold mb-2">Gestão documental</h4>
-                <p className="text-sm text-slate-500">Arquivo digital de certificados, matrículas e comprovativos legais.</p>
-              </div>
+  <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    
+    <div>
 
-              <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md">
-                <h4 className="font-semibold mb-2">Rastreabilidade completa</h4>
-                <p className="text-sm text-slate-500">Acompanhe o estado de cada veículo em tempo real.</p>
-              </div>
+      <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-gradient-to-r from-emerald-100 to-cyan-100 px-5 py-3 text-sm font-semibold text-emerald-700 shadow-sm mb-6">
+        🚛 Reboque Gratuito & Pagamento Imediato
+      </div>
 
-              <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md">
-                <h4 className="font-semibold mb-2">Relatórios automáticos</h4>
-                <p className="text-sm text-slate-500">Obtenha métricas ambientais e operacionais instantaneamente.</p>
-              </div>
-            </div>
-          </div>
+      <h3 className="text-4xl font-black leading-tight mb-6 text-slate-800">
+        Gestão do processo de Veículos em Fim de Vida
+      </h3>
 
-          <div className="rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-white to-emerald-50 p-10 shadow-2xl">
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm text-slate-500 mb-2">Estado do processo</p>
-                <div className="h-3 rounded-full bg-slate-800 overflow-hidden">
-                  <div className="h-full w-[78%] bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full" />
-                </div>
-              </div>
+      <p className="text-slate-600 leading-relaxed mb-8 text-lg">
+        O nosso sistema de gestão de veículos em fim de vida é uma plataforma digital completa que simplifica e automatiza todo o processo de abate automóvel.
+        Tratamos da documentação, recolha e acompanhamento do veículo de forma rápida, segura e profissional.
+      </p>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-2xl hover:bg-emerald-50 border border-emerald-100 p-5">
-                  <div className="text-2xl font-bold">1.248</div>
-                  <p className="text-sm text-slate-500">Veículos ativos</p>
-                </div>
+      <div className="grid sm:grid-cols-2 gap-4 mb-8">
 
-                <div className="rounded-2xl hover:bg-emerald-50 border border-emerald-100 p-5">
-                  <div className="text-2xl font-bold">312</div>
-                  <p className="text-sm text-slate-500">Peças recuperadas</p>
-                </div>
-              </div>
+        <div className="rounded-3xl border border-emerald-100 bg-white p-6 shadow-lg hover:-translate-y-1 transition">
+          <div className="text-4xl mb-4">🚚</div>
 
-              <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-6">
-                <p className="text-emerald-300 font-medium mb-2">Sustentabilidade em foco</p>
-                <p className="text-sm text-slate-600">
-                  Reduza desperdícios e maximize o reaproveitamento de materiais com processos automatizados.
-                </p>
-              </div>
-            </div>
+          <h4 className="text-lg font-bold text-slate-800 mb-2">
+            Transporte Gratuito
+          </h4>
+
+          <p className="text-sm text-slate-500">
+            Reboque e recolha do veículo sem qualquer custo adicional.
+          </p>
+        </div>
+
+        <div className="rounded-3xl border border-cyan-100 bg-white p-6 shadow-lg hover:-translate-y-1 transition">
+          <div className="text-4xl mb-4">💸</div>
+
+          <h4 className="text-lg font-bold text-slate-800 mb-2">
+            Pagamento Imediato
+          </h4>
+
+          <p className="text-sm text-slate-500">
+            Tratamos do processo de abate com rapidez e pagamento no momento.
+          </p>
+        </div>
+
+      </div>
+
+      <div className="space-y-4">
+
+        <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md hover:shadow-xl transition">
+          <h4 className="font-semibold mb-2 text-slate-800">
+            Gestão documental
+          </h4>
+
+          <p className="text-sm text-slate-500">
+            Arquivo digital de certificados, matrículas e comprovativos legais.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md hover:shadow-xl transition">
+          <h4 className="font-semibold mb-2 text-slate-800">
+            Rastreabilidade completa
+          </h4>
+
+          <p className="text-sm text-slate-500">
+            Acompanhe o estado de cada veículo em tempo real.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-emerald-100 bg-white p-5 shadow-md hover:shadow-xl transition">
+          <h4 className="font-semibold mb-2 text-slate-800">
+            Relatórios automáticos
+          </h4>
+
+          <p className="text-sm text-slate-500">
+            Obtenha métricas ambientais e operacionais instantaneamente.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div className="rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-white to-emerald-50 p-10 shadow-2xl">
+
+      <div className="space-y-6">
+
+        <div>
+          <p className="text-sm text-slate-500 mb-2">
+            Estado do processo
+          </p>
+
+          <div className="h-3 rounded-full bg-slate-200 overflow-hidden">
+            <div className="h-full w-[78%] bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full" />
           </div>
         </div>
-      </section>
 
-      <section id="processo" className="bg-emerald-50 border-y border-emerald-100">
-        <div className="max-w-7xl mx-auto px-6 py-20">
-          <div className="text-center mb-14">
-            <h3 className="text-4xl font-bold mb-4">Fluxo do Processo</h3>
-            <p className="text-slate-500 max-w-2xl mx-auto">
-              Um sistema completo para controlar cada etapa do ciclo de tratamento dos veículos.
+        <div className="grid grid-cols-2 gap-4">
+
+          <div className="rounded-2xl bg-white border border-emerald-100 p-5 shadow-md">
+            <div className="text-3xl font-black text-emerald-600">
+              2H
+            </div>
+
+            <p className="text-sm text-slate-500 mt-2">
+              Tempo médio de resposta
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {etapas.map((etapa, index) => (
-              <div
-                key={index}
-                className="relative rounded-3xl border border-emerald-100 bg-white p-8 hover:border-emerald-300 transition shadow-lg"
-              >
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 text-xl font-bold">
-                  0{index + 1}
-                </div>
+          <div className="rounded-2xl bg-white border border-cyan-100 p-5 shadow-md">
+            <div className="text-3xl font-black text-cyan-600">
+              100%
+            </div>
 
-                <h4 className="text-xl font-semibold mb-3">{etapa.titulo}</h4>
-                <p className="text-slate-500 text-sm leading-relaxed">{etapa.descricao}</p>
-              </div>
-            ))}
+            <p className="text-sm text-slate-500 mt-2">
+              Processo legal e seguro
+            </p>
           </div>
+
         </div>
-      </section>
+
+        <div className="rounded-3xl border border-emerald-200 bg-white p-8 shadow-lg">
+
+          <p className="text-emerald-600 font-bold mb-3 uppercase tracking-wide text-sm">
+            Serviço completo
+          </p>
+
+          <h4 className="text-3xl font-black text-slate-900 leading-tight mb-4">
+            Tratamos de veículos nacionais e estrangeiros
+          </h4>
+
+          <p className="text-slate-600 leading-relaxed">
+            Serviço rápido, profissional e sem complicações.
+            Recolha gratuita, documentação incluída e pagamento imediato.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+    
 
       <section id="indicadores" className="max-w-[1700px] mx-auto px-8 py-24">
         <div className="w-full rounded-[2.5rem] border border-emerald-100 bg-gradient-to-r from-emerald-100/70 via-cyan-100/60 to-emerald-50 p-14 lg:p-20 shadow-2xl">
