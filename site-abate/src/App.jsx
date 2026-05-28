@@ -472,16 +472,23 @@ const indicadores = [
     <div className="w-full max-w-full rounded-[2rem] border border-emerald-100 bg-white p-5 sm:p-8 shadow-2xl overflow-hidden">
       <h4 className="text-2xl font-bold mb-6">Formulário de Pedido</h4>
 
-      <form
-        name="pedido-abate"
-        method="POST"
-        data-netlify="true"
-        encType="multipart/form-data"
-        onSubmit={handlePedido}
-        className="space-y-5"
-      >
+     <form
+  name="pedido-abate"
+  method="POST"
+  data-netlify="true"
+  netlify
+  encType="multipart/form-data"
+  onSubmit={handlePedido}
+  className="space-y-5"
+>
         <input type="hidden" name="form-name" value="pedido-abate" />
-
+<p hidden>
+  <label>
+    Don’t fill this out:
+    <input name="bot-field" />
+  </label>
+</p>
+<input type="hidden" name="bot-field" />
         <input
           name="Nome"
           value={formData.nome}
