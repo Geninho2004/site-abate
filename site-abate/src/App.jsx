@@ -262,7 +262,7 @@ const indicadores = [
             Transporte Gratuito
           </h4>
 
-          <p className="text-sm text-slate-500">
+          <p className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700">
             Reboque e recolha do veículo sem qualquer custo adicional.
           </p>
         </div>
@@ -274,7 +274,7 @@ const indicadores = [
             Pagamento Imediato
           </h4>
 
-          <p className="text-sm text-slate-500">
+          <p className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700">
             Tratamos do processo de abate com rapidez e pagamento no momento.
           </p>
         </div>
@@ -288,7 +288,7 @@ const indicadores = [
             Gestão documental
           </h4>
 
-          <p className="text-sm text-slate-500">
+          <p className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700">
             Arquivo digital de certificados, matrículas e comprovativos legais.
           </p>
         </div>
@@ -298,7 +298,7 @@ const indicadores = [
             Rastreabilidade completa
           </h4>
 
-          <p className="text-sm text-slate-500">
+          <p className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700">
             Acompanhe o estado de cada veículo em tempo real.
           </p>
         </div>
@@ -308,7 +308,7 @@ const indicadores = [
             Relatórios automáticos
           </h4>
 
-          <p className="text-sm text-slate-500">
+          <p className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700">
             Obtenha métricas ambientais e operacionais instantaneamente.
           </p>
         </div>
@@ -454,9 +454,9 @@ const indicadores = [
         </div>
       </section>
 
-      <section id="abate" className="hover:bg-emerald-50/60 border-y border-emerald-100">
-        <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-start">
-          <div>
+      <section id="abate" className="hover:bg-emerald-50/60 border-y border-emerald-100 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+              <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300 mb-6">
               Pedido Online de Abate
             </div>
@@ -474,12 +474,12 @@ const indicadores = [
                 <p className="text-sm text-slate-500 mb-2">✔ Upload de fotografias</p>
                 <p className="text-sm text-slate-500 mb-2">✔ Pedido de recolha</p>
                 <p className="text-sm text-slate-500 mb-2">✔ Contacto direto</p>
-                <p className="text-sm text-slate-500">✔ Gestão pelo administrador</p>
+                <p className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700">✔ Gestão pelo administrador</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-emerald-100 bg-white p-8 shadow-2xl">
+          <div className="w-full max-w-full rounded-[2rem] border border-emerald-100 bg-white p-5 sm:p-8 shadow-2xl overflow-hidden">
             <h4 className="text-2xl font-bold mb-6">Formulário de Pedido</h4>
 
             <div className="space-y-5">
@@ -515,7 +515,7 @@ const indicadores = [
                 className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
-              <div className="rounded-2xl border-2 border-dashed border-emerald-200 bg-emerald-50 p-8 text-center">
+              <div className="rounded-2xl border-2 border-dashed border-emerald-200 bg-emerald-50 p-5 sm:p-8 text-center overflow-hidden">
                 <p className="text-slate-600 mb-3">Adicionar fotografias do veículo</p>
                 <input
                   type="file"
@@ -524,7 +524,7 @@ const indicadores = [
                     ...formData,
                     fotos: Array.from(e.target.files || [])
                   })}
-                  className="text-sm text-slate-500"
+                  className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700"
                 />
 
                 {formData.fotos.length > 0 && (
