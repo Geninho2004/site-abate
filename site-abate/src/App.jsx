@@ -144,7 +144,7 @@ const indicadores = [
   </p>
 </a>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-700">
+          <nav className="flex flex-wrap items-center justify-center sm:justify-end gap-3 text-sm text-slate-700">
   
   <a href="#abate" className="hover:text-emerald-500 transition">Pedido de Abate</a>
   
@@ -185,7 +185,7 @@ const indicadores = [
               Centro de Gestão de Veículos em Fim de Vida
             </h2>
 
-            <p className="text-xl text-slate-700 leading-relaxed mb-8 max-w-2xl">
+            <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed mb-8 max-w-2xl">
               O Centro de Gestão de Veículos em Fim de Vida oferece soluções integradas e sustentáveis para a gestão eficiente e responsável de veículos no final do seu ciclo de vida.
               Aposte numa mobilidade mais sustentável e reduza os custos na aquisição do seu novo carro elétrico.
               Soluções simples, segura e com acompanhamento profissional em todo o processo.
@@ -226,7 +226,7 @@ const indicadores = [
       Processo rápido e seguro
     </p>
 
-    <h4 className="text-4xl font-black leading-tight">
+    <h4 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight">
       Gerimos o processo de abate do seu veículo com rapidez
     </h4>
 
