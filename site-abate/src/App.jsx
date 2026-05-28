@@ -51,30 +51,14 @@ export default function App() {
     }
   ]);
 
-  const encode = (data) => {
-    const form = new FormData();
-
-    Object.keys(data).forEach((key) => {
-      if (key === 'fotos') {
-        data.fotos.forEach((foto) => {
-          form.append('fotos', foto);
-        });
-      } else {
-        form.append(key, data[key]);
-      }
-    });
-
-    return form;
-  };
-
-  const handlePedido = async (e) => {
-    e.preventDefault();
-
+  const handlePedido = () => {
     if (
       formData.nome &&
       formData.telefone &&
       formData.veiculo
     ) {
+      setPedidoEnviado(true);
+
       const novoPedido = {
         id: `#VFV-${Math.floor(Math.random() * 9000 + 1000)}`,
         cliente: formData.nome,
@@ -87,38 +71,19 @@ export default function App() {
         }))
       };
 
-      try {
-        await fetch('/', {
-          method: 'POST',
-          body: encode({
-            'form-name': 'pedido-abate',
-            nome: formData.nome,
-            telefone: formData.telefone,
-            veiculo: formData.veiculo,
-            descricao: formData.descricao,
-            fotos: formData.fotos
-          }),
-        });
+      setPedidos([novoPedido, ...pedidos]);
 
-        setPedidos([novoPedido, ...pedidos]);
+      setFormData({
+        nome: '',
+        telefone: '',
+        veiculo: '',
+        descricao: '',
+        fotos: []
+      });
 
-        setPedidoEnviado(true);
-
-        setFormData({
-          nome: '',
-          telefone: '',
-          veiculo: '',
-          descricao: '',
-          fotos: []
-        });
-
-        setTimeout(() => {
-          setPedidoEnviado(false);
-        }, 4000);
-
-      } catch (error) {
-        alert('Erro ao enviar pedido. Tente novamente.');
-      }
+      setTimeout(() => {
+        setPedidoEnviado(false);
+      }, 4000);
     }
   };
 
@@ -160,12 +125,24 @@ export default function App() {
     }
   ];
 
-  const indicadores = [
-    { valor: '98%', legenda: 'Taxa de reaproveitamento' },
-    { valor: '24h', legenda: 'Tempo médio de registo' },
-    { valor: '+3.000', legenda: 'Veículos processados' },
-    { valor: '100%', legenda: 'Conformidade ambiental' }
-  ];
+const indicadores = [
+  {
+    titulo: '🇵🇹 Português',
+    texto: 'Tratamos do processo de abate e pagamento imediato'
+  },
+  {
+    titulo: '🇬🇧 English',
+    texto: 'We handle the scrapping process and immediate payment'
+  },
+  {
+    titulo: '🇫🇷 Français',
+    texto: 'Nous gérons le processus de destruction et paiement immédiat'
+  },
+  {
+    titulo: '🇪🇸 Español',
+    texto: 'Gestionamos el proceso de baja y pago inmediato'
+  }
+];
 
   return (
     <div className="min-h-screen bg-white text-slate-800">
@@ -189,7 +166,7 @@ export default function App() {
       <section className="relative overflow-hidden">
        <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 via-cyan-100 to-white opacity-90" />
 
-        <div className="relative max-w-7xl mx-auto px-6 py-5 lg:py-5 grid lg:grid-cols-2 gap-16 items-center">
+        <div className="relative max-w-7xl mx-auto px-6 py-12 lg:py-20 grid lg:grid-cols-[1fr_1.25fr] gap-12 items-center">
           <div>
            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/40 bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 backdrop-blur-sm px-5 py-3 text-sm font-semibold text-cyan-700 shadow-md mb-6">
   <div className="h-2 w-2 rounded-full bg-cyan-500 animate-pulse"></div>
@@ -208,8 +185,8 @@ export default function App() {
 
             <div className="mb-10 rounded-3xl border border-emerald-200 bg-white p-6 shadow-xl">
             
-              <p className="text-sm uppercase tracking-[0.3em] text-emerald-300 mb-3 font-semibold">
-                Ligue já para marcar
+              <p className="text-sm uppercase tracking-[0.3em] text-emerald-400 mb-3 font-semibold">
+                Ligue para solicitar avaliação
               </p>
 
               <a
@@ -227,18 +204,30 @@ export default function App() {
 
           
           </div>
+<div className="relative overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-2xl">
+  <img
+    src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1400&auto=format&fit=crop"
+    alt="Veículo"
+    className="h-full min-h-[620px] w-full object-cover"
+  />
 
-          <div className="grid grid-cols-2 gap-4">
-            {indicadores.map((item, index) => (
-              <div
-                key={index}
-                className="rounded-3xl border border-emerald-100 bg-white p-8 shadow-xl"
-              >
-                <div className="text-4xl font-black text-emerald-400 mb-2">{item.valor}</div>
-                <p className="text-slate-700">{item.legenda}</p>
-              </div>
-            ))}
-          </div>
+  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+
+  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+    <p className="mb-3 inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur">
+      Processo rápido e seguro
+    </p>
+
+    <h4 className="text-4xl font-black leading-tight">
+      Tratamos do processo de abate e documentação
+    </h4>
+
+    <p className="mt-4 max-w-lg text-white/90">
+      Serviço profissional para veículos nacionais e estrangeiros.
+      Pagamento imediato e acompanhamento completo.
+    </p>
+  </div>
+</div>
         </div>
       </section>
 
@@ -331,24 +320,77 @@ export default function App() {
         </div>
       </section>
 
-      <section id="indicadores" className="max-w-7xl mx-auto px-6 py-20">
-        <div className="rounded-[2rem] border border-emerald-100 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 p-10 lg:p-16">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
+      <section id="indicadores" className="max-w-[1700px] mx-auto px-8 py-24">
+        <div className="w-full rounded-[2.5rem] border border-emerald-100 bg-gradient-to-r from-emerald-100/70 via-cyan-100/60 to-emerald-50 p-14 lg:p-20 shadow-2xl">
+          <div className="grid lg:grid-cols-[0.9fr_1.4fr] gap-16 items-center">
             <div>
-              <h3 className="text-4xl font-bold mb-6">Indicadores e conformidade ambiental</h3>
+              <h3 className="text-4xl font-bold mb-6">Veiculos Estrangeiros</h3>
               <p className="text-slate-600 leading-relaxed">
-                Monitorize KPIs operacionais, emissões evitadas, materiais reciclados e desempenho ambiental através de dashboards intuitivos.
+                Oferecemos um processo simplificado para proprietários de veículos estrangeiros, sem complicações e pagamento imediato.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-5">
-              {indicadores.map((item, index) => (
-                <div key={index} className="rounded-2xl bg-white/80 border border-emerald-100 p-6">
-                  <div className="text-3xl font-black text-cyan-300 mb-2">{item.valor}</div>
-                  <div className="text-sm text-slate-500">{item.legenda}</div>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+  {indicadores.map((item, index) => (
+    <div
+      key={index}
+      className="rounded-3xl border border-emerald-100 bg-white/95 p-7 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition duration-300 min-h-[320px]"
+    >
+      <h4 className="text-lg font-black text-emerald-700 mb-1">
+        {item.titulo}
+      </h4>
+
+      <p className="text-xs text-slate-500 mb-4">
+        {index === 0 && 'Portugal'}
+        {index === 1 && 'International Vehicles'}
+        {index === 2 && 'Véhicules étrangers'}
+        {index === 3 && 'Vehículos extranjeros'}
+      </p>
+
+      <p className="text-2xl font-black text-slate-900 leading-tight mb-5 max-w-[280px]">
+        {item.texto}
+      </p>
+
+      <div className="space-y-2 text-sm text-slate-600">
+        {index === 0 && (
+          <>
+            <p>✓ Processo rápido e simples</p>
+            <p>✓ Tratamos da documentação</p>
+            <p>✓ Pagamento imediato</p>
+            <p>✓ Veículos nacionais e estrangeiros</p>
+          </>
+        )}
+
+        {index === 1 && (
+          <>
+            <p>✓ Fast and simple process</p>
+            <p>✓ We handle all paperwork</p>
+            <p>✓ Immediate payment</p>
+            <p>✓ National and foreign vehicles</p>
+          </>
+        )}
+
+        {index === 2 && (
+          <>
+            <p>✓ Processus rapide et simple</p>
+            <p>✓ Nous gérons toute la documentation</p>
+            <p>✓ Paiement immédiat</p>
+            <p>✓ Véhicules nationaux et étrangers</p>
+          </>
+        )}
+
+        {index === 3 && (
+          <>
+            <p>✓ Proceso rápido y sencillo</p>
+            <p>✓ Gestionamos toda la documentación</p>
+            <p>✓ Pago inmediato</p>
+            <p>✓ Vehículos nacionales y extranjeros</p>
+          </>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
           </div>
         </div>
       </section>
@@ -381,46 +423,33 @@ export default function App() {
           <div className="rounded-[2rem] border border-emerald-100 bg-white p-8 shadow-2xl">
             <h4 className="text-2xl font-bold mb-6">Formulário de Pedido</h4>
 
-            <form
-              name="pedido-abate"
-              method="POST"
-              data-netlify="true"
-              encType="multipart/form-data"
-              onSubmit={handlePedido}
-            >
-              <input type="hidden" name="form-name" value="pedido-abate" />
-
-              <div className="space-y-5">
-                <input
-                  name="nome"
-                  value={formData.nome}
+            <div className="space-y-5">
+              <input
+                value={formData.nome}
                 onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
                 type="text"
                 placeholder="Nome completo"
                 className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
-                <input
-                  name="telefone"
-                  value={formData.telefone}
+              <input
+                value={formData.telefone}
                 onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
                 type="tel"
                 placeholder="Número de telefone"
                 className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
-                <input
-                  name="veiculo"
-                  value={formData.veiculo}
+              <input
+                value={formData.veiculo}
                 onChange={(e) => setFormData({ ...formData, veiculo: e.target.value })}
                 type="text"
                 placeholder="Marca e modelo do veículo"
                 className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
               />
 
-                <textarea
-                  name="descricao"
-                  value={formData.descricao}
+              <textarea
+                value={formData.descricao}
                 onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
                 placeholder="Descreva o estado do veículo"
                 rows={4}
@@ -430,7 +459,6 @@ export default function App() {
               <div className="rounded-2xl border-2 border-dashed border-emerald-200 bg-emerald-50 p-8 text-center">
                 <p className="text-slate-600 mb-3">Adicionar fotografias do veículo</p>
                 <input
-                  name="fotos"
                   type="file"
                   multiple
                   onChange={(e) => setFormData({
@@ -447,221 +475,29 @@ export default function App() {
                 )}
               </div>
 
-                <button
-                  type="submit"
-                  className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
-                >
+              <button
+                onClick={handlePedido}
+                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
+              >
                 Enviar Pedido
               </button>
 
-                {pedidoEnviado && (
-                  <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
-                    <p className="text-emerald-300 font-semibold mb-1">
-                      Pedido enviado com sucesso
-                    </p>
-                    <p className="text-sm text-slate-600">
-                      A nossa equipa irá entrar em contacto brevemente.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </form>
+              {pedidoEnviado && (
+                <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
+                  <p className="text-emerald-300 font-semibold mb-1">
+                    Pedido enviado com sucesso
+                  </p>
+                  <p className="text-sm text-slate-600">
+                    A nossa equipa irá entrar em contacto brevemente.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        {!adminLogado ? (
-          <div className="max-w-xl mx-auto rounded-[2rem] border border-emerald-100 bg-white p-10 shadow-2xl">
-            <div className="text-center mb-8">
-              <h3 className="text-4xl font-bold mb-4">Entrar</h3>
-              <p className="text-slate-500">
-                Aceda à sua conta para consultar pedidos e gerir veículos.
-              </p>
-            </div>
-
-            <div className="space-y-5">
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
-              />
-
-              <input
-                type="password"
-                placeholder="Palavra-passe"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
-              />
-
-              <button
-                onClick={handleLogin}
-                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 font-bold text-slate-950 hover:bg-emerald-400 transition"
-              >
-                Entrar
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-white to-emerald-50 p-10 lg:p-14 shadow-2xl">
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-10">
-              <div>
-                <p className="text-emerald-300 text-sm uppercase tracking-[0.3em] mb-3">
-                  Painel Administrativo
-                </p>
-
-                <h3 className="text-4xl font-bold mb-2">
-                  Gestão de Pedidos
-                </h3>
-
-                <p className="text-slate-500">
-                  Consulte pedidos enviados pelos clientes e visualize fotografias dos veículos.
-                </p>
-              </div>
-
-              <button
-                onClick={() => setAdminLogado(false)}
-                className="rounded-2xl border border-emerald-200 px-6 py-3 font-semibold hover:bg-white text-slate-800 transition"
-              >
-                Terminar Sessão
-              </button>
-            </div>
-
-            <div className="grid gap-6">
-              {pedidos.map((pedido, index) => (
-                <div
-                  key={index}
-                  className="rounded-3xl border border-emerald-100 bg-white p-8"
-                >
-                  <div className="grid lg:grid-cols-4 gap-6 items-start">
-                    <div>
-                      <p className="text-sm text-slate-500 mb-2">Pedido</p>
-                      <h4 className="text-xl font-bold">{pedido.id}</h4>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-slate-500 mb-2">Cliente</p>
-                      <p className="font-semibold">{pedido.cliente}</p>
-                      <p className="text-sm text-slate-500">{pedido.telefone}</p>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-slate-500 mb-2">Veículo</p>
-                      <p className="font-semibold">{pedido.veiculo}</p>
-
-                      <div className="mt-5 rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
-                        <p className="text-sm text-slate-500 mb-4 font-medium">
-                          Atualizar estado do pedido
-                        </p>
-
-                        <div className="flex flex-wrap gap-2">
-                        <button
-                          onClick={() => atualizarEstadoPedido(pedido.id, 'Em análise')}
-                          className="rounded-xl border border-yellow-500/30 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-300 hover:bg-yellow-500/20 transition"
-                        >
-                          Em análise
-                        </button>
-
-                        <button
-                          onClick={() => atualizarEstadoPedido(pedido.id, 'Completo')}
-                          className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-300 hover:bg-emerald-500/20 transition"
-                        >
-                          Completo
-                        </button>
-
-                        <button
-                          onClick={() => atualizarEstadoPedido(pedido.id, 'Cancelado')}
-                          className="rounded-xl border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs text-red-300 hover:bg-red-500/20 transition"
-                        >
-                          Cancelado
-                        </button>
-                        </div>
-                      </div>
-
-                      <div className="mt-5 inline-flex rounded-2xl bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-300 border border-emerald-500/20">
-                        {pedido.estado}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <p className="text-sm font-medium text-slate-600">Fotografias do Veículo</p>
-
-                        <div className="rounded-full hover:bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs text-slate-500">
-                          {pedido.fotos.length} imagens
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3">
-                        {pedido.fotos.slice(0, 4).map((foto, i) => (
-                          <div
-                            key={i}
-                            onClick={() => setFotoPreview(foto.url)}
-                            className="group relative aspect-square overflow-hidden rounded-2xl border border-emerald-200 cursor-pointer"
-                          >
-                            <img
-                              src={foto.url}
-                              alt={foto.nome}
-                              loading="lazy"
-                              onError={(e) => {
-                                e.currentTarget.src = 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?q=80&w=800&auto=format&fit=crop';
-                              }}
-                              className="h-full w-full object-cover group-hover:scale-105 transition duration-300"
-                            />
-
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs font-semibold">
-                              Ver Foto
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <p className="mt-3 text-sm text-slate-500">
-                        {pedido.fotos.length} fotografias armazenadas
-                      </p>
-
-                      <button
-                        onClick={() => apagarPedido(pedido.id)}
-                        className="mt-4 w-full rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 font-semibold text-red-300 hover:bg-red-500/20 transition"
-                      >
-                        Apagar Pedido
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 rounded-3xl border border-cyan-500/20 bg-cyan-500/10 p-8">
-              <h4 className="text-2xl font-bold mb-4">
-                Para qualquer duvida chamar o Diogo para apoio técnico e gestão de pedidos
-              </h4>
-
-              <p className="text-slate-600 leading-relaxed mb-6">
-                O sistema encontra-se preparado para integração com a automação de processos.
-              </p>
-
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="rounded-2xl bg-white border border-emerald-100 p-5">
-                  ☁ Tudo em Nuvem
-                </div>
-
-                <div className="rounded-2xl bg-white border border-emerald-100 p-5">
-                  🗂 Email Automatico
-                </div>
-
-                <div className="rounded-2xl bg-white border border-emerald-100 p-5">
-                  🔒 Armazenamento Seguro
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </section>
-
+      
       {fotoPreview && (
         <div
           className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-6"
