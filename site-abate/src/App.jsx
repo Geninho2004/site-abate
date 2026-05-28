@@ -128,7 +128,7 @@ const indicadores = [
 ];
 
   return (
-    <div className="min-h-screen bg-white text-slate-800">
+    <div className="min-h-screen bg-white text-slate-800 overflow-x-hidden">
       <header className="border-b border-emerald-200 bg-gradient-to-r from-emerald-50 via-cyan-50 to-white backdrop-blur sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-5 sm:px-6 py-4">
         <a
