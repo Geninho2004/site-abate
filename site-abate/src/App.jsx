@@ -55,14 +55,13 @@ const handlePedido = async (e) => {
   e.preventDefault();
 
   const dados = new FormData();
-  dados.append('form-name', 'pedido-abate');
-  dados.append('Nome', formData.nome);
-  dados.append('Telefone', formData.telefone);
-  dados.append('Veiculo', formData.veiculo);
-  dados.append('Descricao', formData.descricao);
+ dados.append('Nome', formData.nome);
+dados.append('Telefone', formData.telefone);
+dados.append('Veiculo', formData.veiculo);
+dados.append('Descricao', formData.descricao);
 
- formData.fotos.forEach((foto) => {
-  dados.append('Fotos[]', foto, foto.name);
+formData.fotos.forEach((foto) => {
+  dados.append('Fotos', foto, foto.name);
 });
 
   await fetch('/', {
@@ -523,7 +522,7 @@ const indicadores = [
           </p>
 
           <input
-            name="Fotos[]"
+            name="Fotos"
             type="file"
             multiple
             onChange={(e) => setFormData({
