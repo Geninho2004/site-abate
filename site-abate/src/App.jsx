@@ -130,7 +130,7 @@ const indicadores = [
   return (
     <div className="min-h-screen bg-white text-slate-800">
       <header className="border-b border-emerald-200 bg-gradient-to-r from-emerald-50 via-cyan-50 to-white backdrop-blur sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-5 sm:px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-5 sm:px-6 py-4">
         <a
   href="#"
   className="group cursor-pointer block transition"
@@ -144,26 +144,17 @@ const indicadores = [
   </p>
 </a>
 
-          <nav className="flex flex-wrap items-center justify-center sm:justify-end gap-3 text-sm text-slate-700">
-  
-  <a href="#abate" className="hover:text-emerald-500 transition">Pedido de Abate</a>
-  
-
-  <a href="#indicadores" className="hover:text-emerald-500 transition">
-    Internacional
-  </a>
-
-<a href="#sobre" className="hover:text-emerald-500 transition">
-    Sobre
-  </a>
-
-  <a href="#contactos" className="hover:text-emerald-500 transition">
-    Contactos
-  </a>
+         <nav className="flex items-center justify-end">
+  <div className="hidden md:flex items-center gap-6 text-sm text-slate-700">
+    <a href="#abate" className="hover:text-emerald-500 transition">Pedido de Abate</a>
+    <a href="#indicadores" className="hover:text-emerald-500 transition">Internacional</a>
+    <a href="#sobre" className="hover:text-emerald-500 transition">Sobre</a>
+    <a href="#contactos" className="hover:text-emerald-500 transition">Contactos</a>
+  </div>
 
   <a
     href="tel:+351961049508"
-    className="rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-white font-bold shadow-lg hover:scale-105 hover:shadow-emerald-200 transition duration-300"
+    className="ml-4 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-white font-bold shadow-lg hover:scale-105 transition duration-300"
   >
     📞 Ligar
   </a>
@@ -181,11 +172,11 @@ const indicadores = [
   Processo de Gestão de Veículos em Fim de Vida
 </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
               Centro de Gestão de Veículos em Fim de Vida
             </h2>
 
-            <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed mb-8 max-w-2xl">
+            <p className="text-sm sm:text-lg lg:text-xl text-slate-700 leading-relaxed mb-8 max-w-2xl">
               O Centro de Gestão de Veículos em Fim de Vida oferece soluções integradas e sustentáveis para a gestão eficiente e responsável de veículos no final do seu ciclo de vida.
               Aposte numa mobilidade mais sustentável e reduza os custos na aquisição do seu novo carro elétrico.
               Soluções simples, segura e com acompanhamento profissional em todo o processo.
@@ -216,7 +207,7 @@ const indicadores = [
   <img
     src="/camiao-cgv.png"
     alt="Camião CGV"
-    className="h-[420px] sm:h-[520px] lg:min-h-[599px] w-full object-cover"
+    className="h-[360px] sm:h-[520px] lg:min-h-[599px] w-full object-cover"
   />
 
   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
