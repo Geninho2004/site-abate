@@ -142,6 +142,14 @@ const indicadores = [
 
          <nav className="flex items-center justify-end">
   <div className="hidden md:flex items-center gap-6 text-sm text-slate-700">
+    <a
+  href="https://wa.me/351961049508?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-5 right-5 z-50 flex items-center justify-center w-16 h-16 rounded-full bg-green-500 text-white text-3xl shadow-2xl hover:scale-110 transition duration-300"
+>
+  💬
+</a>
     <a href="#abate" className="hover:text-emerald-500 transition">Pedido de Abate</a>
     <a href="#indicadores" className="hover:text-emerald-500 transition">Internacional</a>
     <a href="#sobre" className="hover:text-emerald-500 transition">Sobre</a>
