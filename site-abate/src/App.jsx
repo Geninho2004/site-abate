@@ -455,106 +455,114 @@ const indicadores = [
       </section>
 
       <section id="abate" className="hover:bg-emerald-50/60 border-y border-emerald-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
-              <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300 mb-6">
-              Pedido Online de Abate
-            </div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+    <div>
+      <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300 mb-6">
+        Pedido Online de Abate
+      </div>
 
-            <h3 className="text-4xl font-bold mb-6">
-              Envie fotografias do veículo para abate
-            </h3>
+      <h3 className="text-4xl font-bold mb-6">
+        Envie fotografias do veículo para abate
+      </h3>
 
-            <p className="text-slate-600 leading-relaxed mb-8">
-              Os clientes podem preencher o formulário, enviar fotografias do carro e solicitar rapidamente a recolha ou o processo de abate.
+      <p className="text-slate-600 leading-relaxed mb-8">
+        Os clientes podem preencher o formulário, enviar fotografias do carro e solicitar rapidamente a recolha ou o processo de abate.
+      </p>
+    </div>
+
+    <div className="w-full max-w-full rounded-[2rem] border border-emerald-100 bg-white p-5 sm:p-8 shadow-2xl overflow-hidden">
+      <h4 className="text-2xl font-bold mb-6">Formulário de Pedido</h4>
+
+      <form
+        name="pedido-abate"
+        method="POST"
+        data-netlify="true"
+        encType="multipart/form-data"
+        onSubmit={handlePedido}
+        className="space-y-5"
+      >
+        <input type="hidden" name="form-name" value="pedido-abate" />
+
+        <input
+          name="nome"
+          value={formData.nome}
+          onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+          type="text"
+          placeholder="Nome completo"
+          className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
+        />
+
+        <input
+          name="telefone"
+          value={formData.telefone}
+          onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+          type="tel"
+          placeholder="Número de telefone"
+          className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
+        />
+
+        <input
+          name="veiculo"
+          value={formData.veiculo}
+          onChange={(e) => setFormData({ ...formData, veiculo: e.target.value })}
+          type="text"
+          placeholder="Marca e modelo do veículo"
+          className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
+        />
+
+        <textarea
+          name="descricao"
+          value={formData.descricao}
+          onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
+          placeholder="Descreva o estado do veículo"
+          rows={4}
+          className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
+        />
+
+        <div className="rounded-2xl border-2 border-dashed border-emerald-200 bg-emerald-50 p-5 sm:p-8 text-center overflow-hidden">
+          <p className="text-slate-600 mb-3">
+            Adicionar fotografias do veículo
+          </p>
+
+          <input
+            name="fotos"
+            type="file"
+            multiple
+            onChange={(e) => setFormData({
+              ...formData,
+              fotos: Array.from(e.target.files || [])
+            })}
+            className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700"
+          />
+
+          {formData.fotos.length > 0 && (
+            <p className="mt-4 text-emerald-300 text-sm">
+              {formData.fotos.length} fotografias selecionadas
             </p>
-
-            <div className="space-y-4">
-              <div className="rounded-2xl border border-emerald-100 bg-white p-5">
-                <p className="text-sm text-slate-500 mb-2">✔ Upload de fotografias</p>
-                <p className="text-sm text-slate-500 mb-2">✔ Pedido de recolha</p>
-                <p className="text-sm text-slate-500 mb-2">✔ Contacto direto</p>
-                <p className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700">✔ Gestão pelo administrador</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full max-w-full rounded-[2rem] border border-emerald-100 bg-white p-5 sm:p-8 shadow-2xl overflow-hidden">
-            <h4 className="text-2xl font-bold mb-6">Formulário de Pedido</h4>
-
-            <div className="space-y-5">
-              <input
-                value={formData.nome}
-                onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                type="text"
-                placeholder="Nome completo"
-                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
-              />
-
-              <input
-                value={formData.telefone}
-                onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                type="tel"
-                placeholder="Número de telefone"
-                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
-              />
-
-              <input
-                value={formData.veiculo}
-                onChange={(e) => setFormData({ ...formData, veiculo: e.target.value })}
-                type="text"
-                placeholder="Marca e modelo do veículo"
-                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
-              />
-
-              <textarea
-                value={formData.descricao}
-                onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
-                placeholder="Descreva o estado do veículo"
-                rows={4}
-                className="w-full rounded-2xl border border-emerald-200 bg-white px-5 py-4 text-slate-800 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100 transition"
-              />
-
-              <div className="rounded-2xl border-2 border-dashed border-emerald-200 bg-emerald-50 p-5 sm:p-8 text-center overflow-hidden">
-                <p className="text-slate-600 mb-3">Adicionar fotografias do veículo</p>
-                <input
-                  type="file"
-                  multiple
-                  onChange={(e) => setFormData({
-                    ...formData,
-                    fotos: Array.from(e.target.files || [])
-                  })}
-                  className="block w-full max-w-full text-xs sm:text-sm text-slate-500 file:mr-3 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-slate-700"
-                />
-
-                {formData.fotos.length > 0 && (
-                  <p className="mt-4 text-emerald-300 text-sm">
-                    {formData.fotos.length} fotografias selecionadas
-                  </p>
-                )}
-              </div>
-
-              <button
-                onClick={handlePedido}
-                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
-              >
-                Enviar Pedido
-              </button>
-
-              {pedidoEnviado && (
-                <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
-                  <p className="text-emerald-300 font-semibold mb-1">
-                    Pedido enviado com sucesso
-                  </p>
-                  <p className="text-sm text-slate-600">
-                    A nossa equipa irá entrar em contacto brevemente.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
+          )}
         </div>
-      </section>
+
+        <button
+          type="submit"
+          className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-lg font-bold text-slate-950 hover:bg-emerald-400 transition"
+        >
+          Enviar Pedido
+        </button>
+
+        {pedidoEnviado && (
+          <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-center">
+            <p className="text-emerald-300 font-semibold mb-1">
+              Pedido enviado com sucesso
+            </p>
+            <p className="text-sm text-slate-600">
+              A nossa equipa irá entrar em contacto brevemente.
+            </p>
+          </div>
+        )}
+      </form>
+    </div>
+  </div>
+</section>
 
       
       {fotoPreview && (
